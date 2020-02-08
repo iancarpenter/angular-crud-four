@@ -17,8 +17,9 @@
         <tbody *ngFor="let villain of villains">
             <tr>
                 <th scope="row">{{ villain.id }}</th>
-                <td>{{ villain.name }}</td>
-                <td>{{ villain.episode }}</td>
+                <td  class="w-25 p-3">{{ villain.name }}</td>
+                <td  class="w-25 p-3">{{ villain.episode }}</td>
+                <td><button type="button" class="btn btn-primary">Edit</button></td>
             </tr>
         </tbody>
     </table>
