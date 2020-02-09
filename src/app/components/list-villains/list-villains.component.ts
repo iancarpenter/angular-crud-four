@@ -35,8 +35,8 @@ export class ListVillainsComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl("/createvillain");
   }
 
-  edit(id: string, name: string, episode: string) {
-    console.log('the name is ' + name);
+  toUpdateVillain(id: string, name: string, episode: string ) {
+    this.router.navigate(['/updatevillain'], {queryParams: {id: id, name: name, episode: episode}});
   }
 
 }
