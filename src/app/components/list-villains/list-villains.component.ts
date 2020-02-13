@@ -3,6 +3,7 @@ import { HttpClientVillainService } from 'src/app/services/http-client-villain.s
 import { Villain } from 'src/app/classes/villain';
 import { Router } from "@angular/router";
 import { Subscription } from 'rxjs';
+import { VillainTransferService } from 'src/app/services/villain-transfer.service';
 
 @Component({
   selector: 'app-list-villains',
@@ -15,7 +16,8 @@ export class ListVillainsComponent implements OnInit, OnDestroy {
   villainSubscription: Subscription;
 
   constructor(private villainService: HttpClientVillainService,
-              private router: Router) { }
+              private router: Router,
+              private villainTransferService: VillainTransferService) { }
 
   ngOnInit() {
     this.getVillains();
@@ -36,7 +38,17 @@ export class ListVillainsComponent implements OnInit, OnDestroy {
   }
 
   toUpdateVillain(id: string, name: string, episode: string ) {
-    this.router.navigate(['/updatevillain'], {queryParams: {id: id, name: name, episode: episode}});
+    // this.router.navigate(['/updatevillain'], {queryParams: {id: id, name: name, episode: episode}});
+    
+    // const id = +idstr;
+    // const name = name;
+    // const episode = episode;
+      
+    const villain = { id: +id, name: name, episode: episode };
+
+    this.villainTransferService.setVillain(villain);
+
+    this.router.navigateByUrl("/updatevillain");
   }
 
 }

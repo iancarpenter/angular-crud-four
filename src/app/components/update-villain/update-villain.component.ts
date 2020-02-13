@@ -3,6 +3,7 @@ import { HttpClientVillainService } from 'src/app/services/http-client-villain.s
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { VillainTransferService } from 'src/app/services/villain-transfer.service';
 
 @Component({
   selector: 'app-update-villain',
@@ -21,15 +22,20 @@ export class UpdateVillainComponent implements OnInit, OnDestroy {
 
   constructor(private villainService: HttpClientVillainService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private villainTransferService: VillainTransferService) { }
   
   
   ngOnInit() {    
+    
+    const villain = this.villainTransferService.getVillain();
     this.updateVillainForm.setValue({
-      id: this.route.snapshot.queryParams['id'],
-      name: this.route.snapshot.queryParams['name'],
-      episode: this.route.snapshot.queryParams['episode'],
+      id: villain.id,
+      name: villain.name,
+      episode: villain.episode,
     });
+
+
   }
 
   ngOnDestroy(): void {
