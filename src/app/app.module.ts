@@ -12,12 +12,15 @@ import { ListVillainsComponent } from './components/list-villains/list-villains.
 import { HttpClientVillainService } from './services/http-client-villain.service';
 import { CreateVillainComponent } from './components/create-villain/create-villain.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateVillainComponent } from './components/update-villain/update-villain.component';
+import { VillainTransferService } from './services/villain-transfer.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListVillainsComponent,
-    CreateVillainComponent
+    CreateVillainComponent,
+    UpdateVillainComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     [] : InMemoryWebApiModule.forRoot(VillainInMemDataService),
     ReactiveFormsModule
   ],
-  providers: [HttpClientVillainService],
+  providers: [HttpClientVillainService, VillainTransferService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
